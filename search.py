@@ -7,6 +7,7 @@ import os, sys, time, sqlite3
 ##from watchdog.events import FileSystemEventHandler
 ##from watchdog.utils.dirsnapshot import DirectorySnapshot, DirectorySnapshotDiff
 
+
 FILE_TO_SEARCH = input('Enter a file you want you search for: ')
 DBNAME = 'files.db'
 if sys.platform.startswith('darwin'):
@@ -57,7 +58,6 @@ def buildDB(parent, file):
     row = C.fetchone()
     rid = row[0]
     C.execute('INSERT INTO child_dir_info(FullPath, Size, CDate, MDate, ChildID) VALUES(?,?,?,?,?)', (file.path, st.st_size, st.st_atime, st.st_mtime, rid))
-
 
 def skipPath(paths):
     for pa in paths:
